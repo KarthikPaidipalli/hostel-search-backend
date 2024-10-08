@@ -26,8 +26,24 @@ async function checkingCustomerIsPreseent(username, password) {
     customersDetails.token = token;
 
     await customersDetails.save();
-    
+
     return token;
 }
 
-module.exports = checkingCustomerIsPreseent;
+async function customerSignup(obj){
+
+    const hasedpPassword = await bcrypt.hash(obj.password,10);
+    obj.password=hasedpPassword;
+    const customerFullDetails = await db.customersInformation.create(obj);
+    if(!customerFullDetails){
+        throw new Error(errormsg.UNABLE_TO_CREATE_CUSTOMER)
+    }
+
+    const customerdetails = await db.customers.create({username:obj.email,password:hasedpPassword});
+
+    if(!customerdetails){
+        throw new Error(errormsg.UNABLE_TO_INSERT_INTO_CUSTOMER)
+    }
+}
+
+module.exports = { checkingCustomerIsPreseent,customerSignup };
