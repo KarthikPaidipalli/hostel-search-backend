@@ -18,7 +18,7 @@ const customersinfo = sequilze.define("customersinfo",{
         type: DataTypes.STRING(10),
         allowNull: false
     },
-    email:{
+    username:{
         type: DataTypes.STRING(45),
         allowNull: false
     },

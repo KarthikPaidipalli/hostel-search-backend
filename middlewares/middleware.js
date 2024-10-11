@@ -25,7 +25,7 @@ function signupValidation(req,res,next){
         first_name: Joi.string().required(),
         last_name: Joi.string().required(),
         phone_num: Joi.string().length(10).required(),
-        email: Joi.string().email().required(),
+        username: Joi.string().email().required(),
         gender: Joi.string().valid("male", "female").required(),
         adress: Joi.string().required(),
         date_of_birth: Joi.date().required(),

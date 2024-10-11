@@ -19,8 +19,11 @@ const ownersinfo = sequilze.define("ownersinfo",{
     adress:{
         type:DataTypes.STRING(90)
     },
-    mail:{
-        type:DataTypes.STRING(50)
+    username:{
+        type: DataTypes.STRING(45)
+    },
+    password:{
+        type: DataTypes.STRING(250)
     },
     owner_type: {  
         type: DataTypes.ENUM("individual", "company", "group"),
