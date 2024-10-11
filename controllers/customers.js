@@ -2,13 +2,13 @@ const express = require('express');
 const route = express.Router();  // Correct way to use router
 const { loginValidation,signupValidation } =  require("../middlewares/middleware")
 const {customerSignup,checkingCustomerIsPreseent } = require("../businesslogic/customers")
-route.post('/login', loginValidation,async(req, res) => {
+route.post('/signin', loginValidation,async(req, res) => {
     try{
         const token = await checkingCustomerIsPreseent(req.body.username,req.body.password);
         return res.status(200).send({token});
     }
     catch(err){
-        return res.status(500).send("Something went wrong");
+        return res.status(500).send(err.message);
     }
 });
 

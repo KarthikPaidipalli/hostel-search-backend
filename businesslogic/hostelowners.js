@@ -1,12 +1,14 @@
+const db = require("../models/associations")
+const errormsg = require("../errorconstants")
 async function checkinghostelIsPreseent(username, password) {
 
-    const hostelOwnerDetails = await db.hostelinfo.findOne({
+    const hostelOwnerDetails = await db.ownersinfo.findOne({
         where: {
             username: username
         }
     });
 
-    if (!customersDetails) {
+    if (!hostelOwnerDetails) {
         throw new Error(errormsg.NO_USER_PRESENT);
     }
 

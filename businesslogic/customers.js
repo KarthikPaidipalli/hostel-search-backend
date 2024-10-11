@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jsontoken = require("jsonwebtoken");
 
 async function checkingCustomerIsPreseent(username, password) {
-
+    console.log("user",username);
     const customersDetails = await db.customers.findOne({
         where: {
             username: username
@@ -39,7 +39,7 @@ async function customerSignup(obj){
         throw new Error(errormsg.UNABLE_TO_CREATE_CUSTOMER)
     }
 
-    const customerdetails = await db.customers.create({username:obj.email,password:hasedpPassword});
+    const customerdetails = await db.customers.create({username:obj.username,password:hasedpPassword});
 
     if(!customerdetails){
         throw new Error(errormsg.UNABLE_TO_INSERT_INTO_CUSTOMER)
